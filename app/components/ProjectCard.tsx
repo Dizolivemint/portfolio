@@ -9,7 +9,10 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
   return (
     <div className="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-md transition-all duration-300 hover:-translate-y-2 hover:shadow-lg flex flex-col justify-between">
       <div>
-        <h2 className="text-xl font-bold mb-4 text-black-300 dark:text-white">{project.title}</h2>
+        <div className='flex gap-4 mb-4 items-center justify-between'>
+          <h2 className="text-xl font-bold mb-4 text-black-300 dark:text-white">{project.title}</h2>
+          <p className="mb-4 text-gray-600 dark:text-gray-300">{project.year}</p>
+        </div>
         <p className="mb-4 text-gray-600 dark:text-gray-300">{project.description}</p>
       </div>
       
