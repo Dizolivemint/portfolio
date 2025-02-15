@@ -1,40 +1,17 @@
-"use client"
-
-import React, { useEffect, useState } from 'react';
-import styled from 'styled-components';
 import { getProducts } from '@/apollo/client';
-import { ProjectList } from '@/app/components/ProjectList';
-import { TechFilter } from '@/app/components/TechFilter';
-import { ProfilePhoto } from '@/app/components/ProfilePhoto';
-import { Projects } from '@/app/types/project';
+import ClientWrapper from '@/app/components/ClientWrapper';
+import { Header } from '@/app/components/Header';
 
-const PageContainer = styled.div`
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 2rem;
-`;
+export const dynamic = 'force-static';
 
-const Page = () => {
-  const [projects, setProjects] = useState<Projects>([]);
-  const [selectedStack, setSelectedStack] = useState<string>('All tech');
-
-  useEffect(() => {
-    async function loadData() {
-      const fetchedProjects = await getProducts();
-      fetchedProjects.sort((a, b) => b.year - a.year);
-      setProjects(fetchedProjects);
-    }
-
-    loadData();
-  }, []);
+export default async function Page() {
+  const projects = await getProducts();
+  const sortedProjects = [...projects].sort((a, b) => b.year - a.year);
 
   return (
-    <PageContainer>
-      <ProfilePhoto />
-      <TechFilter projects={projects} selectedStack={selectedStack} setSelectedStack={setSelectedStack} />
-      <ProjectList projects={projects} selectedStack={selectedStack} />
-    </PageContainer>
+    <div className="max-w-7xl mx-auto p-8">
+      <Header />
+      <ClientWrapper initialProjects={sortedProjects} />
+    </div>
   );
-};
-
-export default Page;
+}

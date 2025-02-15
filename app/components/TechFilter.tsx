@@ -1,26 +1,5 @@
-import styled from 'styled-components';
+"use client"
 import { Projects } from '../types/project';
-
-const FilterContainer = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-  margin-bottom: 2rem;
-`;
-
-const TechIcon = styled.button<{ isSelected: boolean }>`
-  padding: 0.5rem 1rem;
-  border-radius: 20px;
-  border: 2px solid ${({ theme }) => theme.border};
-  background-color: ${({ isSelected, theme }) => isSelected ? theme.text : theme.containerBg};
-  color: ${({ isSelected, theme }) => isSelected ? theme.containerBg : theme.text};
-  cursor: pointer;
-  transition: all 0.3s ease;
-
-  &:hover {
-    transform: translateY(-2px);
-  }
-`;
 
 interface TechFilterProps {
   projects: Projects;
@@ -32,16 +11,20 @@ export const TechFilter: React.FC<TechFilterProps> = ({ projects, selectedStack,
   const allTechs = ['All tech', ...Array.from(new Set(projects.flatMap(project => project.stack)))];
 
   return (
-    <FilterContainer>
+    <div className="flex flex-wrap gap-4 mb-8">
       {allTechs.map((tech) => (
-        <TechIcon
+        <button
           key={tech}
-          isSelected={selectedStack === tech}
           onClick={() => setSelectedStack(tech)}
+          className={`px-4 py-2 rounded-full border-2 transition-all duration-300 hover:-translate-y-1
+            ${selectedStack === tech 
+              ? 'bg-blue-500 text-white border-blue-500' 
+              : 'bg-white dark:bg-gray-800 text-gray-800 dark:text-white border-gray-300 dark:border-gray-600'
+            }`}
         >
           {tech}
-        </TechIcon>
+        </button>
       ))}
-    </FilterContainer>
+    </div>
   );
 };

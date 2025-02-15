@@ -1,12 +1,6 @@
-import styled from 'styled-components';
-import { ProjectCard } from '@/app/components/ProjectCard';
+"use client"
+import { ProjectCard } from './ProjectCard';
 import { Projects } from '@/app/types/project';
-
-const ProjectGrid = styled.div`
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 2rem;
-`;
 
 interface ProjectListProps {
   projects: Projects;
@@ -19,10 +13,10 @@ export const ProjectList: React.FC<ProjectListProps> = ({ projects, selectedStac
     : projects.filter(project => project.stack.includes(selectedStack));
 
   return (
-    <ProjectGrid>
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
       {filteredProjects.map((project) => (
         <ProjectCard key={project.id} project={project} />
       ))}
-    </ProjectGrid>
+    </div>
   );
 };

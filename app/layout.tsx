@@ -1,6 +1,5 @@
 import React from 'react';
-import ClientLayout from '@/app/components/ClientLayout';
-import { StyledComponentsRegistry } from '@/app/registry';
+import '@/app/globals.css';
 
 export const metadata = {
   title: 'Miles of Code',
@@ -14,10 +13,8 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>
-        <StyledComponentsRegistry>
-          <ClientLayout>{children}</ClientLayout>
-        </StyledComponentsRegistry>
+      <body className="min-h-screen bg-white dark:bg-gray-900 transition-colors">
+        {children}
       </body>
     </html>
   );
