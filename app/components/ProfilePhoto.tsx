@@ -6,7 +6,6 @@ const PhotoContainer = styled.div`
   border-radius: 50%;
   overflow: hidden;
   margin: 0 auto 2rem;
-  border: 4px solid ${({ theme }) => theme.border};
 `;
 
 const Photo = styled.img`
