@@ -9,7 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@apollo/client": "^3.10.6",
+    "@apollo/client": "^3.13.1",
     "lucide-react": "^0.475.0",
     "next": "15.1.7",
     "react": "19.0.0",
